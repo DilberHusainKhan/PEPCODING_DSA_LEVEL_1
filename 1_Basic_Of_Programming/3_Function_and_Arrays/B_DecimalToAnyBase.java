@@ -20,8 +20,6 @@ public class B_DecimalToAnyBase {
             rv += dig *p;
             p *= 10; 
         }
-
-
         return rv;
 
      }

@@ -10,10 +10,8 @@ public class E_MergeSort {
         }
         
         int[] res = mergeSort(arr,0,arr.length-1);
-        
-        for(int i=0;i<res.length;i++){
-            System.out.print(res[i]+"\t");
-        } 
+        print(res);
+         
     }
     public static int[] mergeSort(int[] a, int lo, int hi){
         if(lo == hi){
@@ -28,6 +26,12 @@ public class E_MergeSort {
         return fsa;
     }
     public static int[] mergeTwoArray(int[] a, int[] b){
+        System.out.println("Merging These Two Array");
+        System.out.println("Left Array -->");
+        print(a);
+        System.out.println("Right Array-->");
+        print(b);
+        
         int i=0;
         int j=0;
         int k=0;
@@ -55,5 +59,12 @@ public class E_MergeSort {
             k++;
         }
         return res;
+    }
+    public static void print(int[] res){
+        System.out.println("Final Result");
+        for(int i=0;i<res.length;i++){
+            System.out.print(res[i]+"\t");
+        }
+        System.out.println();
     }
 }

@@ -25,9 +25,27 @@ public class A_Intro {
         System.out.println(".");
     }
 
+    //  Linewise display queue 
+    public static void levelOrderDisplayLinewise(Node root) {
+        Queue<Node> queue = new ArrayDeque<>();
+        Queue<Node> cqueue = new ArrayDeque<>();
+        queue.add(root);
+        while (queue.size() > 0) {
+            Node temp = queue.remove();
+            System.out.print(temp.data + " ");
+            for (Node child : temp.children) {
+                cqueue.add(child);
+            }
+            if (queue.size() == 0) {
+                queue = cqueue;
+                cqueue = new ArrayDeque<>();
+                System.out.println(" .");
+            }
+        }
+    }
     public static void main(String[] args) {
         Node root = new Node(10);
-
+        
         Node twenty = new Node(20);
         root.children.add(twenty);
         Node thirty = new Node(30);
@@ -57,5 +75,6 @@ public class A_Intro {
         eighty.children.add(onehundredtwenty);
 
         levelOrderDisplay(root);
+        levelOrderDisplayLinewise(root);
     }
 }

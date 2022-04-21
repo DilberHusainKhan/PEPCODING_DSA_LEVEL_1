@@ -93,21 +93,35 @@ public class F_LeveOrderLineWiseGenericTree {
 
     public static void levelOrderLinewise(Node node) {
         // write your code here
-        Queue<Node> queue = new ArrayDeque<>();
-        Queue<Node> cqueue = new ArrayDeque<>();
-        queue.add(node);
-        while (queue.size() > 0) {
-            Node temp = queue.remove();
-            System.out.print(temp.data + " ");
-            for (Node child : temp.children) {
-                cqueue.add(child);
+        LinkedList<Node> que = new LinkedList<>();
+        que.addLast(node);
+        while (que.size() != 0) {
+            int currSize = que.size();
+            while (currSize-- > 0) {
+                Node rnode = que.removeFirst();
+                System.out.print(rnode.data + " ");
+                for (Node child : rnode.children) {
+                    que.addLast(child);
+                }
             }
-            if (queue.size() == 0) {
-                queue = cqueue;
-                cqueue = new ArrayDeque<>();
-                System.out.println();
-            }
+            System.out.println();
         }
+        // Queue based
+        // Queue<Node> queue = new ArrayDeque<>();
+        // Queue<Node> cqueue = new ArrayDeque<>();
+        // queue.add(node);
+        // while (queue.size() > 0) {
+        // Node temp = queue.remove();
+        // System.out.print(temp.data + " ");
+        // for (Node child : temp.children) {
+        // cqueue.add(child);
+        // }
+        // if (queue.size() == 0) {
+        // queue = cqueue;
+        // cqueue = new ArrayDeque<>();
+        // System.out.println();
+        // }
+        // }
     }
 
     public static void main(String[] args) throws Exception {

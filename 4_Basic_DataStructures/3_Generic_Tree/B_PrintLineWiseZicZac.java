@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class B_PrintLineWiseZicZac {
@@ -14,30 +15,56 @@ public class B_PrintLineWiseZicZac {
     }
 
     public static void levelOrderDisplayLinewiseZicZac(Node root) {
-        Queue<Node> queue = new ArrayDeque<>();
-        Queue<Node> cqueue = new ArrayDeque<>();
-        queue.add(root);
+        LinkedList<Node> que = new LinkedList<>();
+        LinkedList<Node> st = new LinkedList<>();
         int level = 0;
-        while (queue.size() > 0) {
-            Node temp = queue.remove();
-            System.out.print(temp.data + " ");
+        que.addLast(root);
+        while (que.size() != 0) {
+            int currSize = que.size();
+            while (currSize-- > 0) {
+                Node rnode = que.removeFirst();
+                System.out.print(rnode.data + " ");
+                if (level % 2 == 0) {
+                    for (int i = 0; i < rnode.children.size(); i++) {
+                        st.addFirst(rnode.children.get(i));
+                    }
+                } else {
+                    for (int i = rnode.children.size() - 1; i >= 0; i--) {
+                        st.addFirst(rnode.children.get(i));
+                    }
+                }
+            }
+            System.out.println();
             level++;
-            if (level % 2 != 0) {
-                for (int i = temp.children.size() - 1; i >= 0; i--) {
-                    Node child = temp.children.remove(i);
-                    cqueue.add(child);
-                }
-            } else {
-                for (Node child : temp.children) {
-                    cqueue.add(child);
-                }
-            }
-            if (queue.size() == 0) {
-                queue = cqueue;
-                cqueue = new ArrayDeque<>();
-                System.out.println(" .");
-            }
+            LinkedList<Node> temp = que;
+            que = st;
+            st = temp;
         }
+
+        // Queue<Node> queue = new ArrayDeque<>();
+        // Queue<Node> cqueue = new ArrayDeque<>();
+        // queue.add(root);
+        // int level = 0;
+        // while (queue.size() > 0) {
+        // Node temp = queue.remove();
+        // System.out.print(temp.data + " ");
+        // level++;
+        // if (level % 2 != 0) {
+        // for (int i = temp.children.size() - 1; i >= 0; i--) {
+        // Node child = temp.children.remove(i);
+        // cqueue.add(child);
+        // }
+        // } else {
+        // for (Node child : temp.children) {
+        // cqueue.add(child);
+        // }
+        // }
+        // if (queue.size() == 0) {
+        // queue = cqueue;
+        // cqueue = new ArrayDeque<>();
+        // System.out.println(" .");
+        // }
+        // }
     }
 
     public static void main(String[] args) {

@@ -49,5 +49,4 @@ public class D_MergeTwoSortedArray {
             System.out.print(arr[i]+"\t");
         }
     }
-
 }
